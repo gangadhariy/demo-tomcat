@@ -7,7 +7,7 @@ pipeline {
             steps {
                 // Navigate into the cloned repository and build with Maven
                 sh '''
-                    cd DevOps-K8s-Security
+                    cd demo-tomcat
                     mvn clean verify sonar:sonar \
                         -Dsonar.projectKey=test \
                         -Dsonar.projectName="test" \
