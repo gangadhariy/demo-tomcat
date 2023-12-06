@@ -21,6 +21,7 @@ pipeline {
         success {
             // Actions to perform on successful build
             echo 'Build and SonarQube analysis succeeded!'
+            build job: 'docker', wait: false
         }
         failure {
             // Actions to perform on build failure
