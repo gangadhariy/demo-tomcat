@@ -1,4 +1,5 @@
-FROM ubuntu
-RUN apt update -y && apt install apache2  -y
-ENTRYPOINT apache2ctl -DFOREGROUND
-EXPOSE 80
+# Use a base image
+FROM alpine:latest
+
+# Specify the command to run when the container starts
+CMD ["echo", "hi there"]
