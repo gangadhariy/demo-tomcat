@@ -1,5 +1,5 @@
-# Use a base image
-FROM alpine:latest
+# Use the official Tomcat image from Docker Hub
+FROM tomcat:9.0
 
-# Specify the command to run when the container starts
-CMD ["echo", "hi there"]
+# Copy the contents of the target folder to the Tomcat webapps directory
+COPY target/*.war /usr/local/tomcat/webapps/
