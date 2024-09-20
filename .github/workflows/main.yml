@@ -1,4 +1,4 @@
-name: Java Maven Build and Docker
+name: Java Maven Build and Docker1
 
 on:
   push:
@@ -66,3 +66,4 @@ jobs:
         uses: ad-m/github-push-action@v0.6.0
         with:
           github_token: ${{ secrets.PAT_TOKEN }}
+          branch: argocd 
