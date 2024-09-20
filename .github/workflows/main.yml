@@ -49,7 +49,7 @@ jobs:
       - name: Update Kubernetes Deployment
         run: |
           sed -i "s|image: gangadhariy/my-java-app:.*|image: ${{ secrets.DOCKER_USERNAME }}/my-java-app:latest|" ./deployment.yaml
-
+          echo "# Updated at $(date)" >> manifests/deployment.yaml
       - name: Configure Git
         run: |
           git config --global user.name "gangadhariy"
