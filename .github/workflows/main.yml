@@ -10,7 +10,7 @@ on:
 
 jobs:
   build:
-    runs-on: self-hosted
+    runs-on: ubuntu:latest
 
     steps:
       # Step 1: Checkout the code
@@ -45,3 +45,15 @@ jobs:
       - name: Push Docker image
         run: |
           docker push ${{ secrets.DOCKER_USERNAME }}/my-java-app:latest
+
+      - name: Update Kubernetes Deployment
+        run: |
+          sed -i "s|image: gangadhariy/my-java-app:.*|image: ${{ secrets.DOCKER_USERNAME }}/my-java-app:latest|" ./deployment.yaml
+
+      - name: Commit Changes
+        run: |
+          git config --local user.name "github-actions"
+          git config --local user.email "github-actions@github.com"
+          git add ./deployment.yaml
+          git commit -m "Update deployment image tag to latest"
+          git push
