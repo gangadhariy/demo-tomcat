@@ -58,6 +58,7 @@ jobs:
       # Step 9: Commit Changes
       - name: Commit Changes
         run: |
+          git pull
           git add .
           git commit -m "Update deployment image tag to latest"
 
