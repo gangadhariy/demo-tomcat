@@ -54,7 +54,14 @@ jobs:
         run: |
           git config --global user.name "gangadhariy"
           git config --global user.email "gangadharyaleholi12@gmail.com"
-
+          
+      - name: Pull Latest Changes
+        run: |
+          git fetch origin argocd
+          git merge origin/argocd || echo "No changes to merge"
+          
+     
+      
       # Step 9: Commit Changes
       - name: Commit Changes
         run: |
