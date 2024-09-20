@@ -50,10 +50,19 @@ jobs:
         run: |
           sed -i "s|image: gangadhariy/my-java-app:.*|image: ${{ secrets.DOCKER_USERNAME }}/my-java-app:latest|" ./deployment.yaml
 
+      - name: Configure Git
+        run: |
+          git config --global user.name "gangadhariy"
+          git config --global user.email "gangadharyaleholi12@gmail.com"
+
+      # Step 9: Commit Changes
       - name: Commit Changes
         run: |
-          git config --local user.name "gangadhariy"
-          git config --local user.email "gangadharyaleholi12@gmail.com"
           git add .
           git commit -m "Update deployment image tag to latest"
-          git push origin main
+
+      # Step 10: Push Changes
+      - name: Push Changes
+        uses: ad-m/github-push-action@v0.6.0
+        with:
+          github_token: ${{ secrets.PAT_TOKEN }}
