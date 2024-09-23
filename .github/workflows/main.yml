@@ -74,4 +74,4 @@ jobs:
       # Step 10: Push Changes
       - name: Push Changes
         run: |
-          git push origin argocd
+          git push origin main
