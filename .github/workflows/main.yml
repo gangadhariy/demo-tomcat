@@ -46,26 +46,27 @@ jobs:
         run: |
           docker push ${{ secrets.DOCKER_USERNAME }}/my-java-app:latest
 
+      - name: Clone argocd repo
+        run: |
+          git clone https://github.com/gangadhariy/demo-tomcat.git
+          cd demo-tomcat
+
+
       - name: Update Kubernetes Deployment
         run: |
-          sed -i "s|image: gangadhariy/my-java-app:.*|image: ${{ secrets.DOCKER_USERNAME }}/my-java-app:latest|" manifests//deployment.yaml
+          sed -i "s|image: gangadhariy/my-java-app:.*|image: ${{ secrets.DOCKER_USERNAME }}/my-java-app:latest|" deployment.yaml
           echo "# Updated at $(date)" >> manifests/deployment.yaml
       - name: Configure Git
         run: |
           git config --global user.name "gangadhariy"
           git config --global user.email "gangadharyaleholi12@gmail.com"
           
-      - name: Pull Latest Changes
-        run: |
-          git fetch origin argocd
-          git merge origin/argocd || echo "No changes to merge"
           
      
       
       # Step 9: Commit Changes
       - name: Commit Changes
         run: |
-          git pull
           git add .
           git commit -m "Update deployment image tag to latest"
 
