@@ -48,9 +48,9 @@ jobs:
 
       - name: Clone argocd repo
         run: |
-          git clone https://github.com/gangadhariy/demo-tomcat.git
-          cd demo-tomcat
-          git checkout argocd
+          git clone https://github.com/gangadhariy/argocd.git
+          cd argocd
+          git checkout master
 
 
       - name: Update Kubernetes Deployment
@@ -74,4 +74,4 @@ jobs:
       # Step 10: Push Changes
       - name: Push Changes
         run: |
-          git push origin main
+           git push https://${{ secrets.PAT_TOKEN }}@github.com/gangadhariy/argocd.git master
