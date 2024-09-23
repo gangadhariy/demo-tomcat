@@ -50,6 +50,7 @@ jobs:
         run: |
           git clone https://github.com/gangadhariy/demo-tomcat.git
           cd demo-tomcat
+          git checkout argocd
 
 
       - name: Update Kubernetes Deployment
