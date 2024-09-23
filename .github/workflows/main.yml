@@ -74,4 +74,4 @@ jobs:
       # Step 10: Push Changes
       - name: Push Changes
         run: |
-          git push https://gangadhariy:${{ secrets.PAT_TOKEN }}@github.com/gangadhariy/demo-tomcat.git argocd
+          git push origin argocd
