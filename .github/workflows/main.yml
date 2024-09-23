@@ -48,8 +48,8 @@ jobs:
 
       - name: Clone argocd repo
         run: |
-          git clone https://github.com/gangadhariy/argocd.git
-          cd argocd
+          git clone https://github.com/gangadhariy/argocd.git argocd-repo
+          cd argocd-repo
           git checkout master
 
 
