@@ -17,3 +17,4 @@ spec:
         image: gangadhariy/my-java-app:latest
         ports:
         - containerPort: 8080# Updated at Mon Sep 23 10:16:55 UTC 2024
+# Updated at Mon Sep 23 10:40:57 UTC 2024
