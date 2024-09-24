@@ -40,14 +40,18 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       # Step 5: Build the Docker image
-      - name: Build Docker image
-        run: |
-          docker build -t ${{ secrets.DOCKER_USERNAME }}/my-java-app:latest .
+#      - name: Build Docker image
+#        run: |
+#          docker build -t ${{ secrets.DOCKER_USERNAME }}/my-java-app:latest .
 
       # Step 6: Push the Docker image to Docker Hub
-      - name: Push Docker image
-        run: |
-          docker push ${{ secrets.DOCKER_USERNAME }}/my-java-app:latest
+ #     - name: Push Docker image
+ #       run: |
+ #         docker push ${{ secrets.DOCKER_USERNAME }}/my-java-app:latest
+      - name: Build and push Docker image with Kaniko
+        uses: gcr.io/kaniko-project/executor@v1.6.0
+        with:
+         args: --dockerfile=Dockerfile --context=. --destination=${{ secrets.DOCKER_USERNAME }}/my-java-app:latest
 
       - name: Clone argocd repo
         run: |
