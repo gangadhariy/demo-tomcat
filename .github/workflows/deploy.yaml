@@ -2,7 +2,7 @@ name: Second Workflow
 
 on:
   workflow_run:
-    workflows: ["First Workflow"]
+    workflows: ["Java Maven Build and Docker1"]
     types:
       - completed
 
