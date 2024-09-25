@@ -1,0 +1,33 @@
+name: Second Workflow
+
+on:
+  workflow_run:
+    workflows: ["First Workflow"]
+    types:
+      - completed
+
+jobs:
+  deploy:
+    runs-on: self-hosted  # Use your self-hosted runner
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Step 1: Install kubectl
+      - name: Install kubectl
+        run: |
+          curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+          chmod +x ./kubectl
+          sudo mv ./kubectl /usr/local/bin/kubectl
+          kubectl version --client  # Check kubectl version to confirm installation
+
+      # Step 2: Delete existing deployment (ignore errors if not found)
+      - name: Delete existing deployment (ignore errors if not found)
+        run: |
+          kubectl delete deployment nginx-deployment --ignore-not-found
+
+      # Step 3: Apply the new deployment
+      - name: Apply new deployment
+        run: |
+          kubectl apply -f ./dep.yaml
