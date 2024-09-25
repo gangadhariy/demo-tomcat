@@ -25,9 +25,9 @@ jobs:
       # Step 2: Delete existing deployment (ignore errors if not found)
       - name: Delete existing deployment (ignore errors if not found)
         run: |
-          kubectl delete deployment nginx-deployment --ignore-not-found
+          kubectl delete deployment my-app --ignore-not-found
 
       # Step 3: Apply the new deployment
       - name: Apply new deployment
         run: |
-          kubectl apply -f ./dep.yaml
+          kubectl apply -f /manifests/deployment.yaml
